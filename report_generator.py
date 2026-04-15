@@ -118,7 +118,7 @@ class ReportGenerator:
         return summary
 
     def generate_markdown(self):
-        """Generate a comprehensive Markdown company report."""
+        """Generate a comprehensive Markdown company report in Chinese."""
         bg = self.background
         scraped_contact = self._extract_contact_info()
         scrape_summary = self._get_scrape_summary()
@@ -126,172 +126,173 @@ class ReportGenerator:
         sections = []
 
         # Title
-        sections.append(f"# {bg['name']} - Company Report\n")
+        sections.append(f"# {bg['name']} - 公司報告\n")
 
         # Company Overview
-        sections.append("## 1. Company Overview\n")
-        sections.append(f"| Item | Detail |")
-        sections.append(f"|------|--------|")
-        sections.append(f"| **Company Name** | {bg['name']} |")
-        sections.append(f"| **Founded** | {bg['founded']} |")
-        sections.append(f"| **Industry** | {bg['industry']} |")
-        sections.append(f"| **Type** | {bg['company_type']} |")
+        sections.append("## 1. 公司概覽\n")
+        sections.append("| 項目 | 詳細資訊 |")
+        sections.append("|------|----------|")
+        sections.append(f"| **公司名稱** | {bg['name']} |")
+        sections.append(f"| **成立年份** | {bg['founded']} 年 |")
+        sections.append(f"| **產業類別** | {bg.get('industry_zh', bg['industry'])} |")
+        sections.append(f"| **公司類型** | {bg.get('company_type_zh', bg['company_type'])} |")
         hq = bg["headquarters"]
         sections.append(
-            f"| **Headquarters** | {hq['address']}, {hq['city']}, {hq['state']} {hq['zip']} |"
+            f"| **總部地址** | {hq['address']}, {hq['city']}, {hq['state']} {hq['zip']} |"
         )
-        sections.append(f"| **Revenue** | {bg['revenue']} |")
-        sections.append(f"| **Websites** | {', '.join(bg['websites'])} |")
+        sections.append(f"| **年營收** | {bg['revenue']} |")
+        sections.append(f"| **官方網站** | {', '.join(bg['websites'])} |")
         sections.append("")
 
         # Leadership
-        sections.append("### Leadership\n")
+        title_zh = {"CEO": "執行長", "COO": "營運長", "CTO": "技術長", "CFO": "財務長"}
+        sections.append("### 管理團隊\n")
         for leader in bg["leadership"]:
-            sections.append(f"- **{leader['title']}**: {leader['name']}")
+            zh = title_zh.get(leader["title"], "")
+            label = f"{leader['title']}（{zh}）" if zh else leader["title"]
+            sections.append(f"- **{label}**: {leader['name']}")
         sections.append("")
 
         # Office Locations
-        sections.append("### Office Locations\n")
-        for office in bg["offices"]:
+        sections.append("### 辦公地點\n")
+        for office in bg.get("offices_zh", bg["offices"]):
             sections.append(f"- {office}")
         sections.append("")
 
         # Company Description
-        sections.append("## 2. About the Company\n")
-        sections.append(bg["description"])
+        sections.append("## 2. 公司簡介\n")
+        sections.append(bg.get("description_zh", bg["description"]))
         sections.append("")
 
         # Scraped about content
         about_text = self._get_text_from_pages("about")
         if about_text:
-            sections.append("### Company Story (from website)\n")
+            sections.append("### 公司故事（網站內容）\n")
             sections.append(about_text)
             sections.append("")
 
         # Homepage content
         homepage_text = self._get_text_from_pages("homepage")
         if homepage_text:
-            sections.append("### Website Homepage Content\n")
+            sections.append("### 網站首頁內容\n")
             sections.append(homepage_text)
             sections.append("")
 
         # Vision & Mission
-        sections.append("## 3. Vision & Mission\n")
-        sections.append(bg["vision"])
+        sections.append("## 3. 願景與使命\n")
+        sections.append(bg.get("vision_zh", bg["vision"]))
         sections.append("")
 
         vision_text = self._get_text_from_pages("vision")
         if vision_text:
-            sections.append("### From Website\n")
+            sections.append("### 網站內容\n")
             sections.append(vision_text)
             sections.append("")
 
         # Services
-        sections.append("## 4. Services\n")
-        sections.append(
-            "Y5 Solutions offers a comprehensive range of logistics services:\n"
-        )
-        for service in bg["services"]:
+        sections.append("## 4. 服務項目\n")
+        sections.append("Y5 Solutions 提供全方位的物流服務：\n")
+        for service in bg.get("services_zh", bg["services"]):
             sections.append(f"- **{service}**")
         sections.append("")
 
         services_text = self._get_text_from_pages("services")
         if services_text:
-            sections.append("### Service Details (from website)\n")
+            sections.append("### 服務詳情（網站內容）\n")
             sections.append(services_text)
             sections.append("")
 
         # Technology Platform
-        sections.append("## 5. Technology Platform\n")
+        sections.append("## 5. 技術平台\n")
         tech = bg["technology"]
-        sections.append(tech["description"])
+        sections.append(tech.get("description_zh", tech["description"]))
         sections.append("")
 
-        sections.append("### Integrated Systems\n")
+        sections.append("### 整合系統\n")
         for system in tech["systems"]:
             sections.append(f"- {system}")
         sections.append("")
 
-        sections.append("### Key Features\n")
-        for feature in tech["features"]:
+        sections.append("### 核心功能\n")
+        for feature in tech.get("features_zh", tech["features"]):
             sections.append(f"- {feature}")
         sections.append("")
 
         platform_text = self._get_text_from_pages("platform")
         if platform_text:
-            sections.append("### Platform Details (from website)\n")
+            sections.append("### 平台詳情（網站內容）\n")
             sections.append(platform_text)
             sections.append("")
 
         # Target Customers
-        sections.append("## 6. Target Customers\n")
+        sections.append("## 6. 目標客戶\n")
         for customer in bg["target_customers"]:
-            sections.append(f"### {customer['type']}\n")
-            sections.append(customer["description"])
+            sections.append(f"### {customer.get('type_zh', customer['type'])}\n")
+            sections.append(customer.get("description_zh", customer["description"]))
             sections.append("")
 
         customers_text = self._get_text_from_pages("customers")
         if customers_text:
-            sections.append("### Customer Details (from website)\n")
+            sections.append("### 客戶詳情（網站內容）\n")
             sections.append(customers_text)
             sections.append("")
 
         # Contact Information
-        sections.append("## 7. Contact Information\n")
+        sections.append("## 7. 聯絡資訊\n")
         hq = bg["headquarters"]
         sections.append(
-            f"**Address:** {hq['address']}, {hq['city']}, {hq['state']} {hq['zip']}, {hq['country']}"
+            f"**地址：** {hq['address']}, {hq['city']}, {hq['state']} {hq['zip']}, {hq['country']}"
         )
         sections.append("")
 
         if scraped_contact.get("phone"):
-            sections.append(f"**Phone:** {', '.join(scraped_contact['phone'])}")
+            sections.append(f"**電話：** {', '.join(scraped_contact['phone'])}")
             sections.append("")
         else:
-            sections.append("**Phone:** (310) 997-0045")
+            sections.append("**電話：** (310) 997-0045")
             sections.append("")
 
         if scraped_contact.get("email"):
-            sections.append(f"**Email:** {', '.join(scraped_contact['email'])}")
+            sections.append(f"**電子郵件：** {', '.join(scraped_contact['email'])}")
             sections.append("")
 
         contact_text = self._get_text_from_pages("contact")
         if contact_text:
-            sections.append("### Contact Details (from website)\n")
+            sections.append("### 聯絡詳情（網站內容）\n")
             sections.append(contact_text)
             sections.append("")
 
         # Web Presence
-        sections.append("## 8. Web Presence\n")
+        sections.append("## 8. 網路資源\n")
         for url in bg["websites"]:
             sections.append(f"- {url}")
         sections.append("- LinkedIn: https://www.linkedin.com/company/y5-solutions-inc")
         sections.append("")
 
         # Data Sources
-        sections.append("## 9. Data Sources\n")
+        sections.append("## 9. 資料來源\n")
         sections.append(
-            f"**Scrape Date:** {self.raw_data.get('scraped_at', 'N/A')}"
+            f"**爬取日期：** {self.raw_data.get('scraped_at', 'N/A')}"
         )
         sections.append(
-            f"**Transport Mode:** {self.raw_data.get('transport_mode', 'N/A')}"
+            f"**傳輸模式：** {self.raw_data.get('transport_mode', 'N/A')}"
         )
         sections.append(
-            f"**Pages Attempted:** {scrape_summary['total_pages']}"
+            f"**嘗試頁面數：** {scrape_summary['total_pages']}"
         )
         sections.append(
-            f"**Pages Successful:** {scrape_summary['successful']}"
+            f"**成功頁面數：** {scrape_summary['successful']}"
         )
         sections.append(
-            f"**Pages Failed:** {scrape_summary['failed']}"
+            f"**失敗頁面數：** {scrape_summary['failed']}"
         )
         sections.append("")
 
-        sections.append("### Pages Scraped\n")
+        sections.append("### 爬取頁面清單\n")
         for site_name, pages in self.raw_data.get("sites", {}).items():
-            sections.append(f"**{site_name}:**")
+            sections.append(f"**{site_name}：**")
             for page in pages:
-                status = "OK" if page.get("success") else page.get("error", "Failed")
+                status = "成功" if page.get("success") else page.get("error", "失敗")
                 sections.append(f"- {page['url']} - {status}")
             sections.append("")
 
@@ -309,14 +310,20 @@ class ReportGenerator:
                 "founded": bg["founded"],
                 "headquarters": bg["headquarters"],
                 "offices": bg["offices"],
+                "offices_zh": bg.get("offices_zh", bg["offices"]),
                 "leadership": bg["leadership"],
                 "revenue": bg["revenue"],
                 "company_type": bg["company_type"],
+                "company_type_zh": bg.get("company_type_zh", ""),
                 "industry": bg["industry"],
+                "industry_zh": bg.get("industry_zh", ""),
                 "description": bg["description"],
+                "description_zh": bg.get("description_zh", ""),
                 "vision": bg["vision"],
+                "vision_zh": bg.get("vision_zh", ""),
             },
             "services": bg["services"],
+            "services_zh": bg.get("services_zh", []),
             "technology": bg["technology"],
             "target_customers": bg["target_customers"],
             "contact": {
