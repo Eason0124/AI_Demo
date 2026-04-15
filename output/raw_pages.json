@@ -1,0 +1,143 @@
+{
+  "scraped_at": "2026-04-15T04:04:02.822670+00:00",
+  "transport_mode": "cloudscraper",
+  "sites": {
+    "y5solutions": [
+      {
+        "url": "https://www.y5solutions.com/",
+        "path": "/",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-our-story",
+        "path": "/logistics-solutions-our-story",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-our-vision",
+        "path": "/logistics-solutions-our-vision",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-our-platform",
+        "path": "/logistics-solutions-our-platform",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-contact-us",
+        "path": "/logistics-solutions-contact-us",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-ocean-shipping",
+        "path": "/logistics-solutions-ocean-shipping",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-shipper",
+        "path": "/logistics-solutions-shipper",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-carrier",
+        "path": "/logistics-solutions-carrier",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-logistics-provider",
+        "path": "/logistics-solutions-logistics-provider",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-port-drayage",
+        "path": "/logistics-solutions-port-drayage",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-customs-brokerage",
+        "path": "/logistics-solutions-customs-brokerage",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5solutions.com/logistics-solutions-login",
+        "path": "/logistics-solutions-login",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      }
+    ],
+    "y5logistics": [
+      {
+        "url": "https://www.y5logistics.com/",
+        "path": "/",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5logistics.com/logistics-solutions",
+        "path": "/logistics-solutions",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5logistics.com/transport-management-software-in-los-angeles-california",
+        "path": "/transport-management-software-in-los-angeles-california",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5logistics.com/logistics-about-us/contact-us",
+        "path": "/logistics-about-us/contact-us",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5logistics.com/logistics-products",
+        "path": "/logistics-products",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5logistics.com/logistics-management-in-los-angeles-california/warehousing",
+        "path": "/logistics-management-in-los-angeles-california/warehousing",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      },
+      {
+        "url": "https://www.y5logistics.com/logistics-software",
+        "path": "/logistics-software",
+        "success": false,
+        "status_code": 403,
+        "error": "HTTP 403"
+      }
+    ]
+  }
+}
